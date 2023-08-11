@@ -1,8 +1,8 @@
 require("dotenv").config()
+const cors=require("cors");
 const express=require("express");
 const app=express()
 
-const cors=require("cors");
 
 
  const db=require("./connect.js/db")
@@ -12,8 +12,11 @@ const productsRoutes=require("./routes/Products.routes")
 
 //middlewars
 app.use(express.json());
+app.use(cors({
+   origin:"https://ecommerce-shop-123.netlify.app/",
 
-app.use(cors());
+}))
+
 app.use("/auth",authRoutes)
 app.use("/category",categoryRoutes)
 app.use("/product",productsRoutes)
